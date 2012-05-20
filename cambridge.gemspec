@@ -19,5 +19,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'minitest', '~> 3.0.0'
   gem.add_development_dependency 'guard-minitest'
   gem.add_development_dependency 'shoulda-context', '~> 1.0.0'
+  gem.add_development_dependency 'mocha', '~> 0.11.4'
   gem.add_development_dependency 'bundler', '~> 1.1.3'
 end
