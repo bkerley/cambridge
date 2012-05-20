@@ -4,9 +4,16 @@ end
 
 module Cambridge
   def self.run_file(filename)
-    @contents = File.read filename
-    @tokenizer = Cambridge::Tokenizer.new @contents
-    @ruby = @tokenizer.to_ruby
-    Environment.new.eval @ruby
+    contents = File.read filename
+    run_string contents
+  end
+
+  def self.run_string(string)
+    Environment.new.eval compile_string(string)
+  end
+
+  def self.compile_string(string)
+    tokenizer = Cambridge::Tokenizer.new string
+    tokenizer.to_ruby
   end
 end
