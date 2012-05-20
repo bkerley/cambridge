@@ -1,8 +1,8 @@
 module Cambridge
   module Tokens
-    class Command
+    class Command < Base
       def initialize(name)
-        @name = name
+        @name = de_codepoint name
       end
 
       def to_ruby
