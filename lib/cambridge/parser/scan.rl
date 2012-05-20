@@ -1,38 +1,28 @@
 %%{
   machine scanner;
 
-  action _number { @mark_num = p }
-  action number { @num_stack.push atos(data[@mark_num..p-1]) }
+  action _string { puts 'string start', line, data[0..p]; @mark_str = p }
+  action string { puts 'string end', line, data[0..p]; @tokens << Tokens::String.new(data[@mark_str..p-1]) }
 
-  action constant { @tokens << Tokens::Constant.new(@num_stack.pop) }
-  action series {
-    drop = @drop_current
-    @drop_current = nil
-    sides = @num_stack.pop
-    count = @num_stack.pop
-    @tokens << Tokens::Series.new(count, sides, drop)
-  }
-  action arithmetic { @tokens << Tokens::Arithmetic.new(data[p-1].chr) }
+  action _command { puts 'command start', line, data[0..p]; @mark_cmd = p }
+  action command { puts 'command end', line, data[0..p]; @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) }
 
-  action drop { @drop_current = data[p-1].chr }
+  SingleCharacter = any;
 
-  Number = digit+ >_number %number;
+  StringComponent = SingleCharacter;
 
-  Constant = Number %constant;
+  String = ('"' any* '"') >_string %string;
 
-  Drop = ('^' | 'v') %drop;
-  Series = Number 'd' Number Drop? %series;
+  Command = (alpha alnum*) >_command %command;
 
-  Arithmetic = ('+' | '-' | '*' | '/') %arithmetic;
+  Token = String | Command;
 
-  UnaryExpression = Series | Constant;
-  BinaryExpression = UnaryExpression (space* Arithmetic space* UnaryExpression)+;
-  Expression = UnaryExpression | BinaryExpression;
+  Program = Token (space+ Token)*;
 
-  main := Expression;
+  main := Program;
 }%%
 
-module Crapshoot
+module Cambridge
   module Parser
     class Scan
       def initialize
