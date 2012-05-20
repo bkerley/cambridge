@@ -19,7 +19,6 @@ class TestScanner < CambridgeCase
         refute_nil @parsed
       end
       should "parse into #{sequence.inspect}" do
-        puts '', @parsed.inspect, sequence.inspect, ''
         assert_equal sequence.length, @parsed.length
         @parsed.zip sequence do |result, klass|
           assert_kind_of klass, result
