@@ -1,11 +1,11 @@
 %%{
   machine scanner;
 
-  action _string { puts 'string start', line, data[0..p]; @mark_str = p }
-  action string { puts 'string end', line, data[0..p]; @tokens << Tokens::String.new(data[@mark_str..p-1]) }
+  action _string { @mark_str = p }
+  action string { @tokens << Tokens::String.new(data[@mark_str..p-1]) }
 
-  action _command { puts 'command start', line, data[0..p]; @mark_cmd = p }
-  action command { puts 'command end', line, data[0..p]; @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) }
+  action _command { @mark_cmd = p }
+  action command { @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) }
 
   SingleCharacter = any;
 

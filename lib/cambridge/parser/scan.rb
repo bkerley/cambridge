@@ -224,19 +224,19 @@ begin
 	when 1 then
 # line 4 "lib/cambridge/parser/scan.rl"
 		begin
- puts 'string start', line, data[0..p]; @mark_str = p 		end
+ @mark_str = p 		end
 	when 3 then
 # line 5 "lib/cambridge/parser/scan.rl"
 		begin
- puts 'string end', line, data[0..p]; @tokens << Tokens::String.new(data[@mark_str..p-1]) 		end
+ @tokens << Tokens::String.new(data[@mark_str..p-1]) 		end
 	when 2 then
 # line 7 "lib/cambridge/parser/scan.rl"
 		begin
- puts 'command start', line, data[0..p]; @mark_cmd = p 		end
+ @mark_cmd = p 		end
 	when 4 then
 # line 8 "lib/cambridge/parser/scan.rl"
 		begin
- puts 'command end', line, data[0..p]; @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) 		end
+ @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) 		end
 # line 241 "lib/cambridge/parser/scan.rb"
 	end
 	end
@@ -258,11 +258,11 @@ begin
 	when 3 then
 # line 5 "lib/cambridge/parser/scan.rl"
 		begin
- puts 'string end', line, data[0..p]; @tokens << Tokens::String.new(data[@mark_str..p-1]) 		end
+ @tokens << Tokens::String.new(data[@mark_str..p-1]) 		end
 	when 4 then
 # line 8 "lib/cambridge/parser/scan.rl"
 		begin
- puts 'command end', line, data[0..p]; @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) 		end
+ @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) 		end
 # line 267 "lib/cambridge/parser/scan.rb"
 	  end
 	end
