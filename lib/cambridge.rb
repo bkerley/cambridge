@@ -1,4 +1,4 @@
-%w{version tokenizer}.each do |f|
+%w{version tokenizer tokens}.each do |f|
   require_relative File.join('cambridge', f)
 end
 
