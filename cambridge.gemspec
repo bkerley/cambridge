@@ -4,7 +4,7 @@ require File.expand_path('../lib/cambridge/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Bryce Kerley"]
   gem.email         = ["bkerley@brycekerley.net"]
-  gem.description   = %q{TODO: Write a gem description}
+  gem.description   = %q{A stack-based language to demo}
   gem.summary       = %q{TODO: Write a gem summary}
   gem.homepage      = ""
 
@@ -14,4 +14,10 @@ Gem::Specification.new do |gem|
   gem.name          = "cambridge"
   gem.require_paths = ["lib"]
   gem.version       = Cambridge::VERSION
+  gem.required_ruby_version = '~> 1.9.3'
+
+  gem.add_development_dependency 'minitest', '~> 3.0.0'
+  gem.add_development_dependency 'guard-minitest'
+  gem.add_development_dependency 'shoulda-context', '~> 1.0.0'
+  gem.add_development_dependency 'bundler', '~> 1.1.3'
 end
