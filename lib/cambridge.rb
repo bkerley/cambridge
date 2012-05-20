@@ -1,5 +1,12 @@
-require "cambridge/version"
+%w{version tokenizer}.each do |f|
+  require_relative File.join('cambridge', f)
+end
 
 module Cambridge
-  # Your code goes here...
+  def self.run_file(filename)
+    @contents = File.read filename
+    @tokenizer = Cambridge::Tokenizer.new @contents
+    @ruby = @tokenizer.to_ruby
+    eval @ruby
+  end
 end
