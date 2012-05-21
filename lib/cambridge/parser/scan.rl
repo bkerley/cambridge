@@ -7,15 +7,21 @@
   action _command { @mark_cmd = p }
   action command { @tokens << Tokens::Command.new(data[@mark_cmd..p-1]) }
 
+  action _number { @mark_num = p }
+  action number { @tokens << Tokens::Number.new(data[@mark_num..p-1]) }
+  
+
   SingleCharacter = any;
 
   StringComponent = SingleCharacter;
 
   String = ('"' any* '"') >_string %string;
 
+  Number = (digit+) >_number %number;
+
   Command = (alpha alnum*) >_command %command;
 
-  Token = String | Command;
+  Token = String | Number | Command;
 
   Program = Token (space+ Token)*;
 

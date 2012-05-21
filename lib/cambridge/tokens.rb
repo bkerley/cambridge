@@ -9,6 +9,6 @@ module Cambridge
   end
 end
 
-%w{string command}.each do |f|
+%w{string number command}.each do |f|
   require_relative File.join('tokens', f)
 end
