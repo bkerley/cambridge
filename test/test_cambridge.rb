@@ -1,6 +1,6 @@
 require_relative 'helper'
 
-class TestHello < CambridgeCase
+class TestCambridge < CambridgeCase
   context 'Hello World' do
     setup do
       @filename = File.join(File.dirname(__FILE__), 'fixtures', 'hello.cambridge')
