@@ -10,6 +10,8 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
+task :default => :test
+
 task :test => :scanner
 
 desc 'Generate the Ragel scanner'
