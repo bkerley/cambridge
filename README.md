@@ -1,6 +1,6 @@
 # Cambridge
 
-TODO: Write a gem description
+A dumb stack-based language compiler. Don't use this! Ever!!!
 
 ## Installation
 
