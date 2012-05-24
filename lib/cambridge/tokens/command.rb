@@ -17,6 +17,8 @@ module Cambridge
           "@stack.push(@stack.pop + @stack.pop)"
         when 'mult'
           "@stack.push(@stack.pop * @stack.pop)"
+        when 'dup'
+          "cand = @stack.pop; 2.times { @stack.push cand }"
         end
       end
     end
